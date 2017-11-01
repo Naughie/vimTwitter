@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 import functions
 
-timeline = functions.get_timeline('')
+count = sys.argv[1]
+timeline = functions.get_timeline('', count)
 functions.print_timeline(timeline)

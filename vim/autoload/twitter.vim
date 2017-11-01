@@ -1,13 +1,13 @@
 let s:twitter_script_cmd = 'python'
 let s:twitter_script_ext = 'py'
-let s:twitter_script_path = '~/.config/twitter/python'
+let s:twitter_script_path = g:twitter_script_path . '/' . s:twitter_script_cmd
 
 let g:quickrun_config.twitter_timeline = {
   \ 'outputter/buffer/name' : 'twitter timeline',
   \ 'outputter/buffer/filetype' : 'twitter_timeline',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
-  \ 'exec' : ['%c ' . s:twitter_script_path . '/timeline.' . s:twitter_script_ext],
+  \ 'exec' : ['%c ' . s:twitter_script_path . '/timeline.' . s:twitter_script_ext . ' ' . g:twitter_timeline_count],
   \}
 
 let g:quickrun_config.twitter_tweet = {
@@ -23,7 +23,7 @@ let g:quickrun_config.twitter_user = {
   \ 'outputter/buffer/filetype' : 'twitter_user',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
-  \ 'exec' : ['%c ' . s:twitter_script_path . '/user.' . s:twitter_script_ext . ' %a'],
+  \ 'exec' : ['%c ' . s:twitter_script_path . '/user.' . s:twitter_script_ext . ' ' . g:twitter_timeline_count . ' %a'],
   \}
 
 let g:quickrun_config.twitter_fav = {
