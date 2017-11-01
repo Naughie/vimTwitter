@@ -35,7 +35,7 @@ def conv_time(a):
         d = 12
     return (datetime.datetime(int(b[5]),d,int(b[2]),int(c[0]),int(c[1]),int(c[2])) + datetime.timedelta(hours = 9)).strftime('%Y/%m/%d %H:%M:%S')
 
-def twitter_get_reqest(url, params):
+def twitter_get_request(url, params):
     CK = os.environ['TWITTER_CONSUMER_KEY']
     CS = os.environ['TWITTER_CONSUMER_SECRET']
     AT = os.environ['TWITTER_ACCESS_TOKEN']
@@ -66,24 +66,25 @@ def twitter_post_request(url, params):
 def get_tweet(id):
     url = 'https://api.twitter.com/1.1/statuses/show.json'
     params = {'id': id}
-    return twitter_get_reqest(url, params)
+    return twitter_get_request(url, params)
 
-def get_timeline(screen_name = ''):
-    params = {'count': 30}
+def get_timeline(screen_name, count):
+    params = {'count': count}
     if screen_name:
         url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
         params['screen_name'] = screen_name
     else:
         url = 'https://api.twitter.com/1.1/statuses/home_timeline.json'
-    return twitter_get_reqest(url, params)
+    return twitter_get_request(url, params)
 
 def get_user(screen_name):
     url = 'https://api.twitter.com/1.1/users/show.json'
     params = {'screen_name': screen_name}
-    return twitter_get_reqest(url, params)
+    return twitter_get_request(url, params)
 
 def print_tweet(t):
     if not t['source'].count('instagram'):
+        print('Tweet URL https://twitter.com/{0}/status/{1}'.format(t['user']['screen_name'], t['id_str']))
         print('{0} @{1} |{2}| {3}'.format(t['user']['name'], t['user']['screen_name'], conv_time(t['created_at']), t['id_str']))
         if t['in_reply_to_status_id_str']:
             print('Reply to @{0} {1}'.format(t['in_reply_to_screen_name'], t['in_reply_to_status_id_str']))
@@ -137,6 +138,7 @@ def print_timeline(tl):
 def print_user(u):
     follow_or_unfollow = 'Unfollow' if u['following'] else 'Follow'
     verified_status = 'x' if u['verified'] else '-'
+    print('User URL https://twitter.com/{0}'.format(u['screen_name']))
     print('{0} @{1} [{2}] {3} |{4}|'.format(u['name'], u['screen_name'], verified_status, follow_or_unfollow, conv_time(u['created_at'])))
     print(u['description'])
     if 'url' in u['entities']:
