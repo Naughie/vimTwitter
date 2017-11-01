@@ -26,7 +26,7 @@ nnoremap <leader>tr "syiw:call twitter#retweet(@s)<CR>
 
 Next, set environment variables `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_ACCESS_TOKEN` and `TWITTER_ACCESS_SECRET` to your own values.
 
-Now, you can already use Twitter.
+Now, you can use Twitter.
 
 First, press `<leader>tt` to show your timeline (with 30 tweets by default).
 
@@ -39,8 +39,11 @@ attached urls (one par line)
 ```
 
 Press `<leader>tf` at the `tweet_id` to like or unlike the tweet (whether 'like' or 'unlike' is determined automatically).
+
 Press `<leader>tr` at the `tweet_id` to retweet or unretweet the tweet.
+
 Press `<leader>ts` at the `tweet_id` to show the tweet.
+
 Press `<leader>tu` at the `screen_name` to show the detail of the user and his/her timeline. User information is displayed as:
 ```
 Name @screen_name [x] Follow |yyyy/mm/dd HH:MM:SS|
