@@ -171,3 +171,25 @@ def ret_or_unret(t):
         url = 'https://api.twitter.com/1.1/statuses/retweet/{0}.json'.format(id)
         res = twitter_post_request(url, {})
         print('Successfully retweeted {0}'.format(id))
+
+def fol_or_unfol(u):
+    screen_name = u['screen_name']
+    if u['following']:
+        url = 'https://api.twitter.com/1.1/friendships/destroy.json'
+        res = twitter_post_request(url, {'screen_name': screen_name})
+        print('Successfully Unfollowed {0}'.format(screen_name))
+    else:
+        url = 'https://api.twitter.com/1.1/friendships/create.json'
+        res = twitter_post_request(url, {'screen_name': screen_name, 'follow': True})
+        print('Successfully followed {0}'.format(screen_name))
+
+def list_follows(screen_name):
+    url = 'https://api.twitter.com/1.1/friends/list.json'
+    cursor = '-1'
+    params = {'screen_name': screen_name, 'count': 50}
+    while cursor != '0':
+        params['cursor'] = cursor
+        res = twitter_get_request(url, params)
+        cursor = res['next_cursor_str']
+        for u in res['users']:
+            print_user(u)
