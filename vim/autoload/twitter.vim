@@ -4,7 +4,7 @@ let s:twitter_script_path = g:twitter_script_path . '/' . s:twitter_script_cmd
 
 let g:quickrun_config.twitter_timeline = {
   \ 'outputter/buffer/name' : 'twitter timeline',
-  \ 'outputter/buffer/filetype' : 'twitter_timeline',
+  \ 'outputter/buffer/filetype' : 'twitter_user_timeline',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
   \ 'exec' : ['%c ' . s:twitter_script_path . '/timeline' . s:twitter_script_ext . ' ' . g:twitter_timeline_count],
@@ -12,7 +12,7 @@ let g:quickrun_config.twitter_timeline = {
 
 let g:quickrun_config.twitter_tweet = {
   \ 'outputter/buffer/name' : 'twitter tweet',
-  \ 'outputter/buffer/filetype' : 'twitter_tweet',
+  \ 'outputter/buffer/filetype' : 'twitter_user_timeline',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
   \ 'exec' : ['%c ' . s:twitter_script_path . '/show_tweet' . s:twitter_script_ext . ' %a'],
@@ -20,7 +20,7 @@ let g:quickrun_config.twitter_tweet = {
 
 let g:quickrun_config.twitter_user = {
   \ 'outputter/buffer/name' : 'twitter user',
-  \ 'outputter/buffer/filetype' : 'twitter_user',
+  \ 'outputter/buffer/filetype' : 'twitter_user_timeline',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
   \ 'exec' : ['%c ' . s:twitter_script_path . '/user' . s:twitter_script_ext . ' ' . g:twitter_timeline_count . ' %a'],
@@ -46,7 +46,7 @@ let g:quickrun_config.twitter_fol = {
 
 let g:quickrun_config.twitter_lis_fol = {
   \ 'outputter/buffer/name' : 'twitter followings',
-  \ 'outputter/buffer/filetype' : 'twitter_follow',
+  \ 'outputter/buffer/filetype' : 'twitter_user_timeline',
   \ 'outputter/buffer/into' : 1,
   \ 'command' : s:twitter_script_cmd,
   \ 'exec' : ['%c ' . s:twitter_script_path . '/follow_list' . s:twitter_script_ext . ' ' . g:twitter_user_name],
